@@ -1,0 +1,222 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My user api",
+    "description": "Api Alex..."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/api/create-user": {
+      "post": {
+        "description": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "sexo": {
+                    "type": "string",
+                    "enum": ["masculino", "feminino"]
+                  },
+                  "idade": {
+                    "type": "integer"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  },
+                  "data_nascimento": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "sexo": {
+                    "type": "string",
+                    "enum": ["masculino", "feminino"]
+                  },
+                  "idade": {
+                    "type": "integer"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  },
+                  "data_nascimento": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+            }
+          }
+        }
+      }
+    },
+    "/api/get-user": {
+      "get": {
+        "description": "",
+        "parameters": [{"name": "id", "in": "query", "required": true, "schema": {"type": "integer"}}],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "sexo": {
+                    "type": "string",
+                    "enum": ["masculino", "feminino"]
+                  },
+                  "idade": {
+                    "type": "integer"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  },
+                  "data_nascimento": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+            }
+          }
+        }
+      }
+    },
+    "/api/get-all-users": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+              "schema": {
+                "type": "array",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "sexo": {
+                    "type": "string",
+                    "enum": ["masculino", "feminino"]
+                  },
+                  "idade": {
+                    "type": "integer"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  },
+                  "data_nascimento": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+            }
+          }
+        }
+      }
+    },
+    "/api/update-user": {
+      "put": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "sexo": {
+                    "type": "string",
+                    "enum": ["masculino", "feminino"]
+                  },
+                  "idade": {
+                    "type": "integer"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  },
+                  "data_nascimento": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+            }
+          }
+        },
+        "parameters": [{"name": "id", "in": "query", "required": true, "schema": {"type": "integer"}}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "sexo": {
+                    "type": "string",
+                    "enum": ["masculino", "feminino"]
+                  },
+                  "idade": {
+                    "type": "integer"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  },
+                  "data_nascimento": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/delete-user/{id}": {
+      "delete": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "parameters": [{"name": "id", "in": "query", "required": true, "schema": {"type": "integer"}}]
+      }
+    }
+  }
+}
