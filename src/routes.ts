@@ -26,7 +26,7 @@ routes.get('/api/get-user', async (req: Request, res: Response) => {
 
     await prisma.user.findFirst({
         where: {
-            id: parseInt(id)
+            id
         }
     }).then((data: any) => {
         res.json(data).status(200)
@@ -52,10 +52,9 @@ routes.put('/api/update-user', async (req: Request, res: Response) => {
 
     await prisma.user.update({
         where: {
-            id: parseInt(id)
+            id
         },
         data: {
-            id: parseInt(id),
             nome: user.nome,
             sexo: user.sexo,
             idade: user.idade,
@@ -76,7 +75,7 @@ routes.delete('/api/delete-user', async (req: Request, res: Response) => {
 
     await prisma.user.delete({
         where: {
-            id: parseInt(id)
+            id
         }
     }).then(() => {
         res.send("Usuário deletado com sucesso!").status(200)  

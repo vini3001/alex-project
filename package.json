@@ -13,6 +13,7 @@
   "dependencies": {
     "@prisma/client": "^5.21.1",
     "@types/body-parser": "^1.19.5",
+    "api-call": "file:",
     "body-parser": "^1.20.3",
     "express": "^4.21.1",
     "prisma": "^5.21.1",

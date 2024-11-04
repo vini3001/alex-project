@@ -9,15 +9,15 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id              Int      @id @default(autoincrement())
-  nome            String   @db.VarChar(100)
-  sexo            String   @db.Char(10)
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  nome            String   
+  sexo            String   
   idade           Int      @db.Int
-  cpf             String   @db.Char(11)
-  data_nascimento DateTime @db.DateTime()
+  cpf             String   
+  data_nascimento DateTime 
 }
