@@ -7,12 +7,15 @@ const routes = Router()
 
 routes.post('/api/create-user', async (req: Request, res: Response) => {
     const user = req.body as unknown as User
+    const [day, month, year] = user.data_nascimento.toString().split("/");
+    const dateObj = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+    user.data_nascimento = dateObj;
 
     await prisma.user.create({
         data: user
-    }).then((data) => {
+    }).then((data: any) => {
         res.json(data).status(200)
-    }).catch((err) => {
+    }).catch((err: any) => {
         res.send(err).status(400)
     })
 })
@@ -25,17 +28,17 @@ routes.get('/api/get-user', async (req: Request, res: Response) => {
         where: {
             id: parseInt(id)
         }
-    }).then((data) => {
+    }).then((data: any) => {
         res.json(data).status(200)
-    }).catch((err) => {
+    }).catch((err: any) => {
         res.send(err).status(400)
     })
 })
 
 routes.get('/api/get-all-users', async (req: Request, res: Response) => {
-    await prisma.user.findMany().then((data) => {
+    await prisma.user.findMany().then((data: any) => {
         res.json(data).status(200)
-    }).catch((err) => {
+    }).catch((err: any) => {
         res.send(err).status(400)
     })
 })
@@ -43,16 +46,26 @@ routes.get('/api/get-all-users', async (req: Request, res: Response) => {
 routes.put('/api/update-user', async (req: Request, res: Response) => {
     const user = req.body as unknown as User
     const {id} = req.params as unknown as {id: string}
+    const [day, month, year] = user.data_nascimento.toString().split("/");
+    const dateObj = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+    user.data_nascimento = dateObj;
 
     await prisma.user.update({
         where: {
             id: parseInt(id)
         },
-        data: user
-    }).then((data) => {
+        data: {
+            id: parseInt(id),
+            nome: user.nome,
+            sexo: user.sexo,
+            idade: user.idade,
+            cpf: user.cpf,
+            data_nascimento: user.data_nascimento
+        }
+    }).then((data: any) => {
         res.json(data).status(200)
     })
-    .catch((err) => {
+    .catch((err: any) => {
         console.log(err)
         res.send(err).status(400)
     })
@@ -67,7 +80,7 @@ routes.delete('/api/delete-user', async (req: Request, res: Response) => {
         }
     }).then(() => {
         res.send("Usuário deletado com sucesso!").status(200)  
-    }).catch((err) => {
+    }).catch((err: any) => {
         res.send(err).status(400)
     })
 })
